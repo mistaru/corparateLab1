@@ -1,4 +1,4 @@
-package org.example.controlleer;
+package org.example.controller;
 
 import org.example.model.Composition;
 import org.example.model.Dish;

@@ -1,4 +1,4 @@
-package org.example.controlleer;
+package org.example.controller;
 
 import org.example.model.Dish;
 import org.example.repository.DishesRepository;
@@ -25,6 +25,18 @@ public class MenuController {
         return "index";
     }
 
+    @GetMapping("/new_dish")
+    public String newDish(Model model){
+        model.addAttribute("new_dish", new Dish());
+        return "new_dish";
+    }
+
+    @RequestMapping(value = "/new_dish/add", method = RequestMethod.POST)
+    public String addDishes(@Valid Dish dish){
+        dishesRepository.save(dish);
+        return "redirect:/menu";
+    }
+
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String main(Model model) {
 
@@ -37,11 +49,7 @@ public class MenuController {
         return "menu";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addDishes(@Valid Dish dish){
-        dishesRepository.save(dish);
-        return "redirect:/menu";
-    }
+
 
     @PostMapping("filter")
     public String filter(@RequestParam(required=false) String filter, Map<String, Object> model) {
