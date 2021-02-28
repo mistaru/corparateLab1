@@ -1,5 +1,6 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
+
     <style>
         table, td, th {
             border: 1px solid #999;
@@ -7,13 +8,12 @@
         }
     </style>
 
-    <a class="btn btn-danger" data-toggle="collapse" href="#collapseExampleSss" role="button" aria-expanded="false"
-       aria-controls="collapseExampleSss">
-        Выдача счета
-    </a>
+<div class="jumbotron vertical-center">
 
-    <div class="collapse" id="collapseExampleSss">
-        <div class="form-group mt-3">
+<div class="container">
+
+
+<div class="form-group mt-3">
             <form  class="form-inline" method="post" enctype="multipart/form-data" action="/score">
                 <div>
                     <select name="table" class="custom-select">
@@ -26,11 +26,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-warning">Распечатать</button>
+                    <button type="submit">Распечатать</button>
                 </div>
             </form>
         </div>
-    </div>
 
 
     <div style="text-align: center;"><h1>Счет</h1></div>
@@ -95,6 +94,9 @@
     <#else>
         No message
     </#if>
+
+</div>
+</div>
 </@c.page>
 
 

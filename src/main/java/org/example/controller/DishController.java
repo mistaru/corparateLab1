@@ -3,20 +3,23 @@ package org.example.controller;
 import org.example.model.Dish;
 import org.example.repository.DishesRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-public class MenuController {
+public class DishController {
 
     DishesRepository dishesRepository;
 
-    public MenuController(DishesRepository dishesRepository) {
+    public DishController(DishesRepository dishesRepository) {
         this.dishesRepository = dishesRepository;
     }
 
@@ -38,7 +41,7 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public String main(Model model) {
+    public String listDishes(Model model) {
 
         List<Dish> sortedDishes = dishesRepository.findAll()
                 .stream()
@@ -46,12 +49,27 @@ public class MenuController {
                 .collect(Collectors.toList());
 
         model.addAttribute("menuDishes", sortedDishes);
-        return "menu";
+        return "dish_list";
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @Transactional
+    public String deleteDishes(@PathVariable Long id) {
+        dishesRepository.deleteById(id);
+        return "redirect:/menu";
+    }
 
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    @Transactional
+    public String detailsDish(@PathVariable Long id, Model model) {
+        Dish dish = dishesRepository.findById(id).get();
 
-    @PostMapping("filter")
+        model.addAttribute("list", dish.getCompositions());
+        model.addAttribute("dish", dish );
+        return "details_dish";
+    }
+
+  /*  @PostMapping("filter")
     public String filter(@RequestParam(required=false) String filter, Map<String, Object> model) {
         Iterable<Dish> dishesIterable;
 
@@ -61,7 +79,7 @@ public class MenuController {
             dishesIterable = dishesRepository.findAll();
         }
         model.put("menuDishes", dishesIterable);
-        return "menu";
+        return "dish_list";
     }
-
+*/
 }

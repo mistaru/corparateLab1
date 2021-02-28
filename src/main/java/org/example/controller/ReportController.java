@@ -7,6 +7,7 @@ import org.example.repository.DishesRepository;
 import org.example.repository.IngredientsRepository;
 import org.example.repository.ReportRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +28,21 @@ public class ReportController {
         this.ingredientsRepository = ingredientsRepository;
     }
 
-    @GetMapping("/report")
+/*    @GetMapping("/report")
     public ModelAndView listReports() {
         return new ModelAndView("report")
                 .addObject("Dishes", dishesRepository.findAll())
                 .addObject("reportList", reportRepository.findAll());
+    }*/
+
+    @GetMapping("/new/report")
+    public ModelAndView newReport() {
+        return new ModelAndView("new_collection")
+                .addObject("Dishes", dishesRepository.findAll())
+                .addObject("reportList", reportRepository.findAll());
     }
 
-    @PostMapping("/report")
+    @PostMapping("/new/report")
     public String addReport(
             @RequestParam EnumTable table,
             @RequestParam(required = false, name="nameDish") String nameDish ,
@@ -45,7 +53,6 @@ public class ReportController {
         Report report = new Report (table, dish, count);
         reportRepository.save(report);
         model.put("reportMessage", "Блюдо с названием " + nameDish + " добавлено!");
-
-        return "redirect:/report";
+        return "redirect:/score";
     }
 }

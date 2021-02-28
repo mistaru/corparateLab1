@@ -3,11 +3,22 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Кухня</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="http://localhost:9090/menu">Новое блюдо</a>
+                <a class="dropdown-item" href="http://localhost:9090/new_dish">Новое блюдо</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://localhost:9090/ingredients">Новый ингридиент</a>
+
+                <a class="dropdown-item" href="http://localhost:9090/menu">Список блюд</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Расчитать</a>
+
+                <a class="dropdown-item" href="http://localhost:9090/new_ingredient">Новый ингридиент</a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="http://localhost:9090/ingredients">Список ингридиентов</a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="http://localhost:9090/new/report">Набор блюд</a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="http://localhost:9090/score">Стоимость</a>
                 <div class="dropdown-divider"></div>
             </div>
         </li>

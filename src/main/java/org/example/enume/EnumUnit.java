@@ -1,7 +1,7 @@
 package org.example.enume;
 
 public enum EnumUnit {
-    грамм,
-    пучок,
-    штук
+    Грамм,
+    Пучок,
+    Штук
 }
