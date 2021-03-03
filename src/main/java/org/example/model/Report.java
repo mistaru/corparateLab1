@@ -1,11 +1,12 @@
 package org.example.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.enume.EnumTable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -28,6 +29,9 @@ public class Report {
     @Column
     private int count;
 
+    @Column
+    private LocalDateTime date;
+
     public Report() {
     }
 
@@ -35,5 +39,12 @@ public class Report {
         this.table = table;
         this.dish = dish;
         this.count = count;
+    }
+
+    public Report(EnumTable table, Dish dish, int count, LocalDateTime date) {
+        this.table = table;
+        this.dish = dish;
+        this.count = count;
+        this.date = date;
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Controller
@@ -49,8 +51,9 @@ public class ReportController {
             @RequestParam(required = false) Integer count,
             Map<String, Object> model) {
 
+        LocalDateTime localDate = LocalDateTime.now();
         Dish dish = dishesRepository.findByNameDish(nameDish);
-        Report report = new Report (table, dish, count);
+        Report report = new Report (table, dish, count, localDate);
         reportRepository.save(report);
         model.put("reportMessage", "Блюдо с названием " + nameDish + " добавлено!");
         return "redirect:/score";

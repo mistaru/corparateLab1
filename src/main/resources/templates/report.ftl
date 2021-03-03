@@ -10,9 +10,9 @@
                 <th>Номер набора</th>
                 <th>Блюдо</th>
                 <th>Кол-во порций</th>
+                <th>Дата/Время</th>
             </tr>
             </thead>
-
             <tbody>
             <#if reportList??>
                 <#list reportList as reportList>
@@ -20,6 +20,7 @@
                         <td>${reportList.table.toString()}</td>
                         <td>${reportList.dish.nameDish}</td>
                         <td>${reportList.count}</td>
+                        <td>${reportList.date.}</td>
                     </tr>
                 <#else>
                     Список пуст. Добавьте заказы.
