@@ -28,12 +28,12 @@ public class ReportController {
         this.ingredientsRepository = ingredientsRepository;
     }
 
-/*    @GetMapping("/report")
+    @GetMapping("/report")
     public ModelAndView listReports() {
         return new ModelAndView("report")
                 .addObject("Dishes", dishesRepository.findAll())
                 .addObject("reportList", reportRepository.findAll());
-    }*/
+    }
 
     @GetMapping("/new/report")
     public ModelAndView newReport() {

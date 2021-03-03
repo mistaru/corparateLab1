@@ -18,6 +18,9 @@
                 <a class="dropdown-item" href="http://localhost:9090/new/report">Набор блюд</a>
                 <div class="dropdown-divider"></div>
 
+                <a class="dropdown-item" href="http://localhost:9090/report">История заказов</a>
+                <div class="dropdown-divider"></div>
+
                 <a class="dropdown-item" href="http://localhost:9090/score">Стоимость</a>
                 <div class="dropdown-divider"></div>
             </div>
