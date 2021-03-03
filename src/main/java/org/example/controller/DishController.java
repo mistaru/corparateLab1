@@ -69,17 +69,4 @@ public class DishController {
         return "details_dish";
     }
 
-  /*  @PostMapping("filter")
-    public String filter(@RequestParam(required=false) String filter, Map<String, Object> model) {
-        Iterable<Dish> dishesIterable;
-
-        if (filter != null && !filter.isEmpty()) {
-            dishesIterable = dishesRepository.findAllByNameDish(filter);
-        } else {
-            dishesIterable = dishesRepository.findAll();
-        }
-        model.put("menuDishes", dishesIterable);
-        return "dish_list";
-    }
-*/
 }

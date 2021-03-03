@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.example.enume.EnumTable;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
