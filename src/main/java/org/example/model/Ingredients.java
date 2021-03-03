@@ -1,6 +1,5 @@
 package org.example.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.enume.EnumUnit;
@@ -13,7 +12,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table(name = "ingredients")
-public class Ingredients {
+public class Ingredients implements Comparable<Ingredients> {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "ingredients_id")
@@ -34,6 +33,11 @@ public class Ingredients {
     private Set<Composition> compositionI;
 
     public Ingredients() {
+    }
+
+    @Override
+    public int compareTo(Ingredients o) {
+        return productName.compareTo(o.productName);
     }
 
 }

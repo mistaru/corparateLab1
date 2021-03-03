@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class IngredientsController {
@@ -31,7 +32,10 @@ public class IngredientsController {
 
     @RequestMapping(value = "/ingredients", method = RequestMethod.GET)
     public String main(Model model) {
-        model.addAttribute("Ingredients", ingredientsRepository.findAll());
+        List<Ingredients> ingredients = ingredientsRepository.findAll().stream()
+                .sorted()
+                .collect(Collectors.toList());
+        model.addAttribute("Ingredients", ingredients);
         return "ingredients";
     }
 
@@ -91,7 +95,7 @@ public class IngredientsController {
     }
 
 
-    @RequestMapping(value = "/deleteI/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/ingredient/delete/{id}", method = RequestMethod.GET)
     @Transactional
     public String deleteIngredients(@PathVariable Long id) {
         ingredientsRepository.deleteById(id);

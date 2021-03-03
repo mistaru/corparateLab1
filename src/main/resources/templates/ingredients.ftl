@@ -19,7 +19,7 @@
                         <td>${Ingredients.getProductName()}</td>
                         <td>${Ingredients.getEnumUnit()}</td>
                         <td>${Ingredients.getPrice()}</td>
-                        <td><a href="/delete/${Ingredients.id}">Удалить</a></td>
+                        <td><a href="/ingredient/delete/${Ingredients.id}">Удалить</a></td>
                     </tr>
                 <#else>
                     Список пуст. Добавьте ингридиенты.
