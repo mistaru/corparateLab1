@@ -20,7 +20,7 @@
                         <td>${reportList.table.toString()}</td>
                         <td>${reportList.dish.nameDish}</td>
                         <td>${reportList.count}</td>
-                        <td>${reportList.date.}</td>
+                        <td>${reportList.date}</td>
                     </tr>
                 <#else>
                     Список пуст. Добавьте заказы.
