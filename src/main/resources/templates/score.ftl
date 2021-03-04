@@ -33,6 +33,35 @@
 
 
     <div style="text-align: center;"><h1>Счет</h1></div>
+
+    <div>
+        <br/>
+    </div>
+
+    <#if date??>
+        <div>
+            <br/>
+            <span>Дата : ${date}</span>
+            <br/>
+        </div>
+    <#else>
+        No message
+    </#if>
+
+    <#if time??>
+        <div>
+            <br/>
+            <span>Время : ${time}</span>
+            <br/>
+        </div>
+    <#else>
+        No message
+    </#if>
+
+    <div>
+        <br/>
+    </div>
+
     <table>
         <thead>
         <tr>

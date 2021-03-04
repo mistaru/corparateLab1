@@ -4,7 +4,10 @@ import org.example.dto.IngredientDTO;
 import org.example.dto.OverallDTO;
 import org.example.dto.ReportDTO;
 import org.example.enume.EnumTable;
-import org.example.model.*;
+import org.example.model.Composition;
+import org.example.model.Dish;
+import org.example.model.Ingredients;
+import org.example.model.Report;
 import org.example.repository.DishesRepository;
 import org.example.repository.IngredientsRepository;
 import org.example.repository.ReportRepository;
@@ -14,10 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -43,9 +50,7 @@ public class ScoreController {
     }
 
     @PostMapping("/score")
-    public String scoreMethod(
-            @RequestParam EnumTable table,
-            Map<String, Object> model) {
+    public String scoreMethod(@RequestParam EnumTable table, Map<String, Object> model) {
 
         Map<Dish, List<Report>> reportList = reportRepository.findAll().stream()
                 .filter(rep -> rep.getTable() == table)
@@ -85,6 +90,23 @@ public class ScoreController {
         OverallDTO overallDto = new OverallDTO();
         overallDto.setOverallSum(overallSum);
         overallDto.setOverallIngSum(overallIngPrice);
+
+        List<Report> listReports = reportRepository.findAll().stream()
+                .filter(rep -> rep.getTable() == table).collect(Collectors.toList());
+
+        Report rep = listReports.get(0);
+        for (Report report : listReports) {
+            if (rep.getDate().getSecond() > report.getDate().getSecond())
+                rep = report;
+        }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
+
+        LocalTime time = rep.getDate().toLocalTime();
+        LocalDate date = rep.getDate().toLocalDate();
+
+        model.put("date", date);
+        model.put("time", dtf.format(time));
 
         model.put("overall1", overallDto);
         model.put("Reports", reports);

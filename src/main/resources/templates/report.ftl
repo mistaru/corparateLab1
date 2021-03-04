@@ -10,7 +10,8 @@
                 <th>Номер набора</th>
                 <th>Блюдо</th>
                 <th>Кол-во порций</th>
-                <th>Дата/Время</th>
+                <th>Дата</th>
+                <th>Время</th>
             </tr>
             </thead>
             <tbody>
@@ -20,7 +21,8 @@
                         <td>${reportList.table.toString()}</td>
                         <td>${reportList.dish.nameDish}</td>
                         <td>${reportList.count}</td>
-                        <td>${reportList.date}</td>
+                        <td>${reportList.date.toLocalDate()}</td>
+                        <td>${reportList.date.toLocalTime()}</td>
                     </tr>
                 <#else>
                     Список пуст. Добавьте заказы.
