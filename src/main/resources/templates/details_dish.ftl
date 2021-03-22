@@ -26,6 +26,7 @@
                 <tr>
                     <th>Ингридиенты</th>
                     <th>Единицы измерения</th>
+                    <th>Кол-во</th>
                     <th>Цена</th>
 
                 </tr>
@@ -36,7 +37,9 @@
                         <tr>
                             <td>${list.ingredients.productName}</td>
                             <td>${list.ingredients.getEnumUnit()}</td>
+                            <td>${list.count}</td>
                             <td>${list.ingredients.getPrice()}</td>
+
                         </tr>
                     <#else>
                         Список пуст. Добавьте ингридиенты.
